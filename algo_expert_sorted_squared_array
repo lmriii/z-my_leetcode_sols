@@ -1,28 +1,53 @@
 
-// Write a function that takes in a non-empty array of integers that are sorted
-// in ascending order and returns a new array of the same length with the squares
-// of the original integers also sorted in ascending order.
+// // Write a function that takes in a non-empty array of integers that are sorted
+// // in ascending order and returns a new array of the same length with the squares
+// // of the original integers also sorted in ascending order.
 
-// easy solution using built-in array methods
+// // easy solution using built-in array methods
+
+// function sortedSquaredArray(array) {
+//     // Write your code here.
+//     const newArr = array.map(num => num * num);
+//     console.log(newArr);
+//     newArr.sort((a, b) => {
+//         if (a < b) {
+//             return -1;
+//         } else if (a > b) {
+//             return 1;
+//         } return 0;
+//     });
+//     console.log(newArr)
+
+
+
+//     return newArr;
+// }
+
+// // Do not edit the line below.
+// exports.sortedSquaredArray = sortedSquaredArray;
+
+// more efficient solution using 2 pointers
 
 function sortedSquaredArray(array) {
     // Write your code here.
-    const newArr = array.map(num => num * num);
-    console.log(newArr);
-    newArr.sort((a,b) => {
-      if(a<b){
-        return -1;
-      } else if(a>b) {
-        return 1;
-      } return 0;
-    });
-    console.log(newArr)
-  
-  
-    
-    return newArr;
-  }
-  
-  // Do not edit the line below.
-  exports.sortedSquaredArray = sortedSquaredArray;
-  
+    const resArr = new Array(array.length);
+    let start = 0;
+    let end = array.length - 1;
+
+    for (let i = (array.length - 1); i >= 0; i--) {
+        if (Math.abs(array[start]) > Math.abs(array[end])) {
+            resArr[i] = array[start] * array[start];
+            start++;
+        } else {
+            resArr[i] = array[end] * array[end];
+            end--;
+        }
+        console.log('i: ', i, 'resArr[i]', resArr[i], 'start:', start, 'end:', end)
+    }
+
+    console.log(resArr);
+    return resArr;
+}
+
+// Do not edit the line below.
+exports.sortedSquaredArray = sortedSquaredArray;
