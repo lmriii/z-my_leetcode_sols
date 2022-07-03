@@ -20,8 +20,7 @@ class Node {
 
 
 // Next is a lined list class with methods for adding to head, add to tail, remove head and print list
-
-
+// the LinkedList class is dependent on the Node class above.
 
 
 class LinkedList {
@@ -59,17 +58,25 @@ class LinkedList {
         return removedHead.data;
     }
 
-    printList() {
-        let currentNode = this.head;
-        let output = '<head> ';
-        while (currentNode !== null) {
-            output += currentNode.data + ' ';
-            currentNode = currentNode.getNextNode();
+    removeNode(data) {
+        let currentHead = this.head;
+        while (currentHead.getNextNode().data !== data) {
+            currentHead = currentHead.getNextNode();
         }
-        output += '<tail>';
-        console.log(output);
+        console.log(`Removed ${currentHead.getNextNode().data} from the list.`);
+        currentHead.next = currentHead.getNextNode().next;
+
     }
 
+    printList() {
+        let currentNode = this.head;
+        let output = "<head> ";
+        while (currentNode !== null) {
+            output += currentNode.data + " ";
+            currentNode = currentNode.getNextNode();
+        }
+        output += "<tail>";
+        console.log(output);
+    }
 }
-
 
