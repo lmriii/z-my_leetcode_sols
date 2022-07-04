@@ -19,6 +19,42 @@ class Node {
 }
 
 
+// Modified Node class to be used with Doubly Linked List
+
+class Node {
+    constructor(data) {
+        this.data = data;
+        this.next = null;
+        this.previous = null;
+    }
+
+    setNextNode(node) {
+        if (node instanceof Node || node === null) {
+            this.next = node;
+        } else {
+            throw new Error('Next node must be a member of the Node class')
+        }
+    }
+
+    setPreviousNode(node) {
+        if (node instanceof Node || node === null) {
+            this.previous = node;
+        } else {
+            throw new Error('Previous node must be a member of the Node class')
+        }
+    }
+
+    getNextNode() {
+        return this.next;
+    }
+
+    getPreviousNode() {
+        return this.previous;
+    }
+}
+
+module.exports = Node;
+
 // Next is a linked list class with methods for adding to head, add to tail, remove head and print list
 // the LinkedList class is dependent on the Node class above.
 
@@ -81,6 +117,8 @@ class LinkedList {
 }
 
 // Double Linked list
+// This class is dependent upon the second Node class above. First Node class does not have a tail nor does 
+// it have the methods to modify pointers when adding or deleting nodes
 // Methods addToHead(), addToTail(), removeHead(), removeTail(), removeByData(), 
 // removeByDataBackwards(), printList()
 
