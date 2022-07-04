@@ -81,7 +81,8 @@ class LinkedList {
 }
 
 // Double Linked list
-// Methods addToHead(), addToTail(), removeHead(), removeTail(), removeByData(), printList()
+// Methods addToHead(), addToTail(), removeHead(), removeTail(), removeByData(), 
+// removeByDataBackwards(), printList()
 
 
 class DoublyLinkedList {
@@ -169,6 +170,33 @@ class DoublyLinkedList {
             nextNode.setPreviousNode(previousNode);
             previousNode.setNextNode(nextNode);
         }
+        return nodeToRemove;
+    }
+
+    removeByDataBackwards(data) {
+        let nodeToRemove;
+        let currentNode = this.tail;
+        while (currentNode !== null) {
+            if (currentNode.data === data) {
+                nodeToRemove = currentNode;
+                break;
+            }
+            currentNode = currentNode.getPreviousNode();
+        }
+        if (!nodeToRemove) {
+            return null;
+        }
+        if (nodeToRemove === this.head) {
+            this.removeHead();
+        } else if (nodeToRemove === this.tail) {
+            this.removeTail();
+        } else {
+            const nextNode = nodeToRemove.getNextNode();
+            const previousNode = nodeToRemove.getPreviousNode();
+            nextNode.setPreviousNode(previousNode);
+            previousNode.setNextNode(nextNode);
+        }
+        console.log('removed ', nodeToRemove.data);
         return nodeToRemove;
     }
 
